@@ -15,7 +15,7 @@
 
 1. 克隆项目到本地：
    ```
-   git clone https://github.com/your/repository.git
+   git clone https://github.com/cyz1901/wisdom-gu.git
    ```
 
 2. 安装依赖：

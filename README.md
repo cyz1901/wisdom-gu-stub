@@ -15,7 +15,7 @@ Wisdom Gu is a private knowledge base software designed to organize and manage p
 
 1. Clone the project to your local machine:
    ```
-   git clone https://github.com/your/repository.git
+   git clone https://github.com/cyz1901/wisdom-gu.git
    ```
 
 2. Install the dependencies:
