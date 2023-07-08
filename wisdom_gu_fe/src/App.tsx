@@ -1,11 +1,11 @@
 import { Routes, Route } from "@solidjs/router";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import { JSX } from "solid-js";
 
 function App(): JSX.Element {
   const routes = (
     <Routes>
-      <Route path="/" component={Home} />
+      <Route path="/" component={HomePage} />
     </Routes>
   );
 
