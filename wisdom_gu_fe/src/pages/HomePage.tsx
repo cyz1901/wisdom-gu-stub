@@ -5,6 +5,7 @@ import { AiOutlineSetting } from "solid-icons/ai";
 import { BiRegularBrain } from "solid-icons/bi";
 import FilesTreeComponent from "../components/FilesTreeComponent";
 import ConversationPage from "./ConversationPage";
+import EditorPage from "./EditorPage";
 
 function HomePage(): JSX.Element {
   const [isEditor, setIsEditor] = createSignal(false);
@@ -30,10 +31,28 @@ function HomePage(): JSX.Element {
       <div class="flex flex-col w-full h-full">
         {/* Tab */}
         <div class="w-full h-8 bg-[#1B1D22] flex flex-row items-center justify-between">
-          <button class="btn btn-xs">conversation1</button>
-          <button class="btn btn-xs">editor</button>
+          <button
+            class="btn btn-xs"
+            onclick={() => {
+              setIsEditor(false);
+            }}
+          >
+            conversation1
+          </button>
+          <button
+            class="btn btn-xs"
+            onclick={() => {
+              setIsEditor(true);
+            }}
+          >
+            editor
+          </button>
         </div>
-        <ConversationPage></ConversationPage>
+        {isEditor() ? (
+          <EditorPage></EditorPage>
+        ) : (
+          <ConversationPage></ConversationPage>
+        )}
       </div>
 
       <div class="w-[256px] bg-gray-200">
