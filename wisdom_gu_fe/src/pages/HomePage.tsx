@@ -1,4 +1,4 @@
-import { JSX, createSignal } from "solid-js";
+import { JSX, createSignal, onCleanup, onMount } from "solid-js";
 import { FaRegularFaceDizzy } from "solid-icons/fa";
 import { BsChatLeftDots } from "solid-icons/bs";
 import { AiOutlineSetting } from "solid-icons/ai";
@@ -9,6 +9,31 @@ import EditorPage from "./EditorPage";
 
 function HomePage(): JSX.Element {
   const [isEditor, setIsEditor] = createSignal(false);
+  const [containerRef, setContainerRef] = createSignal<HTMLDivElement | null>(
+    null
+  );
+
+  onMount(() => {
+    const containerElement = containerRef();
+    if (containerElement) {
+      containerElement.addEventListener("wheel", handleWheel);
+    }
+  });
+
+  function handleWheel(event: WheelEvent) {
+    console.log(event.deltaY);
+    event.preventDefault();
+    if (containerRef() !== null && containerRef() !== undefined) {
+      containerRef()!.scrollLeft += event.deltaY;
+    }
+  }
+
+  // 在组件卸载时解除事件监听
+  onCleanup(() => {
+    if (containerRef() !== null && containerRef() !== undefined) {
+      containerRef()!.removeEventListener("wheel", handleWheel);
+    }
+  });
 
   return (
     <div class="flex flex-row h-screen bg-[#1B1D22]  overflow-y-hidden">
@@ -31,14 +56,115 @@ function HomePage(): JSX.Element {
       <div class="flex flex-col w-full h-full">
         {/* Tab */}
         <div class="w-full h-8 bg-[#1B1D22] flex flex-row items-center justify-between">
-          <button
-            class="btn btn-xs"
-            onclick={() => {
-              setIsEditor(false);
-            }}
+          <div
+            class="w-1/2 whitespace-nowrap overflow-x-hidden"
+            ref={setContainerRef}
           >
-            conversation1
-          </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>{" "}
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+            <button
+              class="btn btn-xs"
+              onclick={() => {
+                setIsEditor(false);
+              }}
+            >
+              conversation1
+            </button>
+          </div>
           <button
             class="btn btn-xs"
             onclick={() => {

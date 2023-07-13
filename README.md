@@ -1,4 +1,5 @@
 # Wisdom Gu - Private Knowledge Base Software
+English | [简体中文](./README-zh_CN.md) 
 
 Wisdom Gu is a private knowledge base software designed to organize and manage personal or team knowledge resources. It provides a centralized platform for storing, retrieving, and sharing information, helping users better organize, collaborate, and discover knowledge.
 
