@@ -1,34 +1,11 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "noImplicitReturns": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "allowSyntheticDefaultImports": true,
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "src/*"
-            ]
+    "files": [],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
         },
-        "jsx": "preserve",
-        "jsxImportSource": "solid-js"
-    },
-    "include": [
-        "src",
-        "tailwind.config.js"
+        {
+            "path": "./tsconfig.web.json"
+        }
     ]
 }

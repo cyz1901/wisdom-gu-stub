@@ -28,7 +28,6 @@ function HomePage(): JSX.Element {
     }
   }
 
-  // 在组件卸载时解除事件监听
   onCleanup(() => {
     if (containerRef() !== null && containerRef() !== undefined) {
       containerRef()!.removeEventListener("wheel", handleWheel);
