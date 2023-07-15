@@ -1,4 +1,4 @@
-import { JSX, createSignal, onCleanup, onMount } from "solid-js";
+import { JSX, createEffect, createSignal, onCleanup, onMount } from "solid-js";
 import { FaRegularFaceDizzy } from "solid-icons/fa";
 import { BsChatLeftDots } from "solid-icons/bs";
 import { AiOutlineSetting } from "solid-icons/ai";
@@ -6,6 +6,7 @@ import { BiRegularBrain } from "solid-icons/bi";
 import FilesTreeComponent from "../components/FilesTreeComponent";
 import ConversationPage from "./ConversationPage";
 import EditorPage from "./EditorPage";
+import { ipcRenderer } from "electron";
 
 function HomePage(): JSX.Element {
   const [isEditor, setIsEditor] = createSignal(false);
@@ -32,6 +33,12 @@ function HomePage(): JSX.Element {
     if (containerRef() !== null && containerRef() !== undefined) {
       containerRef()!.removeEventListener("wheel", handleWheel);
     }
+  });
+
+  createEffect(() => {
+    // window.electron.ipcRenderer.on("msg1-reply", (event, arg) => {
+    //   console.log(arg); // prints "pong"
+    // });
   });
 
   return (
@@ -167,7 +174,8 @@ function HomePage(): JSX.Element {
           <button
             class="btn btn-xs"
             onclick={() => {
-              setIsEditor(true);
+              // setIsEditor(true);
+              window.electron.ipcRenderer.send("msg1", "ping1");
             }}
           >
             editor

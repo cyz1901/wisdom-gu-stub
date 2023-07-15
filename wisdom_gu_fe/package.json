@@ -2,7 +2,7 @@
   "name": "vite-template-solid",
   "version": "0.0.0",
   "description": "",
-  "main": "./out/main/index.js",
+  "main": "./out/main/main.js",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
@@ -45,6 +45,8 @@
     "geoip-lite": "^1.4.7",
     "langchain": "^0.0.109",
     "solid-icons": "^1.0.11",
-    "solid-js": "^1.7.6"
+    "solid-js": "^1.7.6",
+    "solid-zustand": "^1.7.0",
+    "zustand": "^4.3.9"
   }
 }
