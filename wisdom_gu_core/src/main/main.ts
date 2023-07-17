@@ -8,6 +8,7 @@ import os from 'os';
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
 import * as dotenv from "dotenv";
+import initializeApp from "./lifecycle/initializeApp";
 
 
 function createWindow(): void {
@@ -52,6 +53,7 @@ app.whenReady().then(() => {
   electronApp.setAppUserModelId("com.electron");
 
   dotenv.config();
+  initializeApp()
 
 
 
