@@ -5,6 +5,11 @@ import icon from '../../resources/icon.png?asset'
 import geoip from 'geoip-lite';
 import os from 'os';
 
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { HumanMessage } from "langchain/schema";
+import * as dotenv from "dotenv";
+
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -45,6 +50,8 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId("com.electron");
+
+  dotenv.config();
 
 
 
@@ -119,5 +126,20 @@ function getClientIP() {
       console.log('无法获取地理位置信息');
     }
   });
+}
+
+
+ipcMain.on('msg2', async (event, data) => {
+  console.log(data)
+  // connectWithClaude()
+})
+
+async function connectWithClaude() {
+  const chat = new ChatOpenAI();
+
+  const input = "How to use ChatAnthropic?";
+  const response = await chat.call([new HumanMessage(input)]);
+
+  console.log(response);
 }
 

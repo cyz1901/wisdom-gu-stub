@@ -11,6 +11,7 @@
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
+    "dev web": "vite",
     "build": "npm run typecheck && electron-vite build",
     "postinstall": "electron-builder install-app-deps",
     "build:win": "npm run build && electron-builder --win --config",
@@ -39,6 +40,7 @@
     "@solidjs/router": "^0.8.2",
     "@types/node": "^20.4.2",
     "browserslist": "^4.21.9",
+    "dotenv": "^16.3.1",
     "electron": "^25.3.0",
     "electron-builder": "^24.4.0",
     "electron-vite": "^1.0.25",
@@ -48,5 +50,6 @@
     "solid-js": "^1.7.6",
     "solid-zustand": "^1.7.0",
     "zustand": "^4.3.9"
-  }
+  },
+  "__npminstall_done": false
 }
