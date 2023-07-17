@@ -1,4 +1,4 @@
-import { JSX, createSignal, onCleanup, onMount } from "solid-js";
+import { JSX, createEffect, createSignal, onCleanup, onMount } from "solid-js";
 import { FaRegularFaceDizzy } from "solid-icons/fa";
 import { BsChatLeftDots } from "solid-icons/bs";
 import { AiOutlineSetting } from "solid-icons/ai";
@@ -6,6 +6,8 @@ import { BiRegularBrain } from "solid-icons/bi";
 import FilesTreeComponent from "../components/FilesTreeComponent";
 import ConversationPage from "./ConversationPage";
 import EditorPage from "./EditorPage";
+import { ChatAnthropic } from "langchain/chat_models/anthropic";
+import { HumanMessage } from "langchain/schema";
 
 function HomePage(): JSX.Element {
   const [isEditor, setIsEditor] = createSignal(false);
@@ -28,12 +30,17 @@ function HomePage(): JSX.Element {
     }
   }
 
-  // 在组件卸载时解除事件监听
   onCleanup(() => {
     if (containerRef() !== null && containerRef() !== undefined) {
       containerRef()!.removeEventListener("wheel", handleWheel);
     }
   });
+
+  // createEffect(() => {
+  //   // window.electron.ipcRenderer.on("msg1-reply", (event, arg) => {
+  //   //   console.log(arg); // prints "pong"
+  //   // });
+  // });
 
   return (
     <div class="flex flex-row h-screen bg-[#1B1D22]  overflow-y-hidden">
@@ -66,109 +73,14 @@ function HomePage(): JSX.Element {
                 setIsEditor(false);
               }}
             >
-              conversation1
-            </button>{" "}
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
-            </button>
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              conversation1
+              claude conversation
             </button>
           </div>
           <button
             class="btn btn-xs"
             onclick={() => {
-              setIsEditor(true);
+              // setIsEditor(true);
+              window.electron.ipcRenderer.send("msg1", "ping1");
             }}
           >
             editor
