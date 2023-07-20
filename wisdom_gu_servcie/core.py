@@ -16,15 +16,27 @@ Answer: Let's work this out in a step by step way to be sure we have the right a
 
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
-# Callbacks support token-wise streaming
-callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-# Verbose is required to pass to the callback manager
+# # Callbacks support token-wise streaming
+# callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+# # Verbose is required to pass to the callback manager
 
-llm = GPT4All(model="../models/ggml-gpt4all-j-v1.3-groovy.bin", n_ctx=1024, backend='gptj', n_batch=model_n_batch, callback_manager=callback_manager, verbose=False)
+# llm = GPT4All(model="../models/ggml-gpt4all-j-v1.3-groovy.bin", n_ctx=1024, backend='gptj', n_batch=model_n_batch, callback_manager=callback_manager, verbose=False)
 
 
-llm_chain = LLMChain(prompt=prompt, llm=llm)
+# llm_chain = LLMChain(prompt=prompt, llm=llm)
 
-question = "What NFL team won the Super Bowl in the year Justin Bieber was born?"
+# question = "What NFL team won the Super Bowl in the year Justin Bieber was born?"
 
-llm_chain.run(question)
+# llm_chain.run(question)
+llm = None
+
+
+def loadLLM():
+    global llm
+    callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+    llm = GPT4All(model="./models/ggml-gpt4all-j-v1.3-groovy.bin", n_ctx=1024, backend='gptj', n_batch=model_n_batch, callback_manager=callback_manager, verbose=False)
+
+def sendMessage():
+    llm_chain = LLMChain(prompt=prompt, llm=llm)
+    question = "What NFL team won the Super Bowl in the year Justin Bieber was born?"
+    llm_chain.run(question)
