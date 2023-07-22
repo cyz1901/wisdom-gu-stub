@@ -3,9 +3,10 @@ import { FaRegularFaceDizzy } from "solid-icons/fa";
 import { BsChatLeftDots } from "solid-icons/bs";
 import { AiOutlineSetting } from "solid-icons/ai";
 import { BiRegularBrain } from "solid-icons/bi";
+import { BsTextParagraph } from "solid-icons/bs";
 import FilesTreeComponent from "../components/FilesTreeComponent";
 import ConversationPage from "./ConversationPage";
-import EditorPage from "./EditorPage";
+import DataPage from "./DataPage";
 import { ChatAnthropic } from "langchain/chat_models/anthropic";
 import { HumanMessage } from "langchain/schema";
 
@@ -36,11 +37,64 @@ function HomePage(): JSX.Element {
     }
   });
 
-  // createEffect(() => {
-  //   // window.electron.ipcRenderer.on("msg1-reply", (event, arg) => {
-  //   //   console.log(arg); // prints "pong"
-  //   // });
-  // });
+  function MainMenu(): JSX.Element {
+    return (
+      <ul class="menu bg-base-200 rounded-box">
+        <li>
+          <a
+            class="tooltip tooltip-right flex items-center justify-center"
+            data-tip="Data"
+            onClick={() => {
+              setIsEditor(false);
+            }}
+          >
+            <BsTextParagraph
+              size={20}
+              fill="currentcolor"
+              color="#585C70"
+            ></BsTextParagraph>
+          </a>
+          <a
+            class="tooltip tooltip-right flex items-center justify-center"
+            data-tip="Chat"
+            onClick={() => {
+              setIsEditor(true);
+            }}
+          >
+            <BsChatLeftDots
+              size={20}
+              fill="currentcolor"
+              color="#585C70"
+            ></BsChatLeftDots>
+          </a>
+        </li>
+        <li>
+          <a
+            class="tooltip tooltip-right flex items-center justify-center"
+            data-tip="Models"
+          >
+            <BiRegularBrain
+              size={20}
+              fill="currentcolor"
+              color="#585C70"
+            ></BiRegularBrain>
+          </a>
+        </li>
+        <li>
+          <a
+            class="tooltip tooltip-right flex items-center justify-center"
+            data-tip="Setting"
+          >
+            <AiOutlineSetting
+              size={20}
+              fill="currentcolor"
+              color="#585C70"
+            ></AiOutlineSetting>
+          </a>
+        </li>
+      </ul>
+    );
+  }
 
   return (
     <div class="flex flex-row h-screen bg-[#1B1D22]  overflow-y-hidden">
@@ -61,35 +115,10 @@ function HomePage(): JSX.Element {
         </div>
       </div>
       <div class="flex flex-col w-full h-full">
-        {/* Tab */}
-        <div class="w-full h-8 bg-[#1B1D22] flex flex-row items-center justify-between">
-          <div
-            class="w-1/2 whitespace-nowrap overflow-x-hidden"
-            ref={setContainerRef}
-          >
-            <button
-              class="btn btn-xs"
-              onclick={() => {
-                setIsEditor(false);
-              }}
-            >
-              claude conversation
-            </button>
-          </div>
-          <button
-            class="btn btn-xs"
-            onclick={() => {
-              // setIsEditor(true);
-              window.electron.ipcRenderer.send("msg1", "ping1");
-            }}
-          >
-            editor
-          </button>
-        </div>
         {isEditor() ? (
-          <EditorPage></EditorPage>
-        ) : (
           <ConversationPage></ConversationPage>
+        ) : (
+          <DataPage></DataPage>
         )}
       </div>
 
@@ -97,49 +126,6 @@ function HomePage(): JSX.Element {
         <FilesTreeComponent></FilesTreeComponent>
       </div>
     </div>
-  );
-}
-
-function MainMenu(): JSX.Element {
-  return (
-    <ul class="menu bg-base-200 rounded-box">
-      <li>
-        <a
-          class="tooltip tooltip-right flex items-center justify-center"
-          data-tip="Histroy Chat"
-        >
-          <BsChatLeftDots
-            size={20}
-            fill="currentcolor"
-            color="#585C70"
-          ></BsChatLeftDots>
-        </a>
-      </li>
-      <li>
-        <a
-          class="tooltip tooltip-right flex items-center justify-center"
-          data-tip="Models"
-        >
-          <BiRegularBrain
-            size={20}
-            fill="currentcolor"
-            color="#585C70"
-          ></BiRegularBrain>
-        </a>
-      </li>
-      <li>
-        <a
-          class="tooltip tooltip-right flex items-center justify-center"
-          data-tip="Setting"
-        >
-          <AiOutlineSetting
-            size={20}
-            fill="currentcolor"
-            color="#585C70"
-          ></AiOutlineSetting>
-        </a>
-      </li>
-    </ul>
   );
 }
 

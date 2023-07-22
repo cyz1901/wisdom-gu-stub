@@ -13,17 +13,26 @@ function ConversationPage(): JSX.Element {
   }
 
   return (
-    <div class="flex flex-col w-full h-[calc(100%-32px)]">
-      <div class="bg-[#2A2C35] flex flex-col overflow-auto h-full space-y-4">
-        <Dialog name="me" content="aaaa"></Dialog>
+    <div class="flex flex-col w-full h-full">
+      <div class="w-full h-8 bg-[#1B1D22] flex flex-row items-center justify-between">
+        <div class="w-1/2 whitespace-nowrap overflow-x-hidden">
+          <button class="btn btn-xs" onclick={() => {}}>
+            claude conversation
+          </button>
+        </div>
       </div>
-      <div class="h-[80px] absolute bottom-3 left-[calc((100%-352px)/2-25%+96px)] w-1/2">
-        <div class=" h-12">
-          <textarea
-            class="textarea w-full resize-none"
-            placeholder="Send a message"
-            onKeyDown={handleKeyDown}
-          ></textarea>
+      <div class="flex flex-col w-full h-[calc(100%-32px)]">
+        <div class="bg-[#2A2C35] flex flex-col overflow-auto h-full space-y-4">
+          <Dialog name="me" content="aaaa"></Dialog>
+        </div>
+        <div class="h-[80px] absolute bottom-3 left-[calc((100%-352px)/2-25%+96px)] w-1/2">
+          <div class=" h-12">
+            <textarea
+              class="textarea w-full resize-none"
+              placeholder="Send a message"
+              onKeyDown={handleKeyDown}
+            ></textarea>
+          </div>
         </div>
       </div>
     </div>
