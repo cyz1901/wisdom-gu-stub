@@ -1,48 +1,53 @@
-import { JSX, createEffect, createSignal, onCleanup, onMount } from "solid-js";
-import { FaRegularFaceDizzy } from "solid-icons/fa";
-import { BsChatLeftDots } from "solid-icons/bs";
-import { AiOutlineSetting } from "solid-icons/ai";
-import { BiRegularBrain } from "solid-icons/bi";
-import { BsTextParagraph } from "solid-icons/bs";
-import FilesTreeComponent from "../components/FilesTreeComponent";
+import { useEffect, useRef, useState } from "react";
+import { BsTextParagraph, BsChatLeftDots } from "react-icons/bs";
+import { BiBrain } from "react-icons/bi";
+import { AiOutlineSetting } from "react-icons/ai";
+import { GiBearFace } from "react-icons/gi";
 import ConversationPage from "./ConversationPage";
 import DataPage from "./DataPage";
-import { ChatAnthropic } from "langchain/chat_models/anthropic";
-import { HumanMessage } from "langchain/schema";
+import FilesTreeComponent from "@renderer/components/FilesTreeComponent";
 
 function HomePage(): JSX.Element {
-  const [isEditor, setIsEditor] = createSignal(false);
-  const [containerRef, setContainerRef] = createSignal<HTMLDivElement | null>(
-    null
-  );
+  const [isEditor, setIsEditor] = useState(false);
+  // const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
+  // const containerElementRef = useRef<>();
 
-  onMount(() => {
-    const containerElement = containerRef();
-    if (containerElement) {
-      containerElement.addEventListener("wheel", handleWheel);
-    }
-  });
+  // useEffect(() => {
+  //   // 获取 DOM 元素的引用
+  //   const containerElement = containerElementRef.current;
 
-  function handleWheel(event: WheelEvent) {
-    console.log(event.deltaY);
-    event.preventDefault();
-    if (containerRef() !== null && containerRef() !== undefined) {
-      containerRef()!.scrollLeft += event.deltaY;
-    }
-  }
+  //   if (containerElement) {
+  //     containerElement.addEventListener("wheel", handleWheel);
+  //   }
 
-  onCleanup(() => {
-    if (containerRef() !== null && containerRef() !== undefined) {
-      containerRef()!.removeEventListener("wheel", handleWheel);
-    }
-  });
+  //   // 在组件卸载时移除事件监听
+  //   return () => {
+  //     if (containerElement) {
+  //       containerElement.removeEventListener("wheel", handleWheel);
+  //     }
+  //   };
+  // }, []);
+
+  // function handleWheel(event: WheelEvent) {
+  //   console.log(event.deltaY);
+  //   event.preventDefault();
+  //   if (containerRef() !== null && containerRef() !== undefined) {
+  //     containerRef()!.scrollLeft += event.deltaY;
+  //   }
+  // }
+
+  // onCleanup(() => {
+  //   if (containerRef() !== null && containerRef() !== undefined) {
+  //     containerRef()!.removeEventListener("wheel", handleWheel);
+  //   }
+  // });
 
   function MainMenu(): JSX.Element {
     return (
-      <ul class="menu bg-base-200 rounded-box">
+      <ul className="menu bg-base-200 rounded-box">
         <li>
           <a
-            class="tooltip tooltip-right flex items-center justify-center"
+            className="tooltip tooltip-right flex items-center justify-center"
             data-tip="Data"
             onClick={() => {
               setIsEditor(false);
@@ -55,7 +60,7 @@ function HomePage(): JSX.Element {
             ></BsTextParagraph>
           </a>
           <a
-            class="tooltip tooltip-right flex items-center justify-center"
+            className="tooltip tooltip-right flex items-center justify-center"
             data-tip="Chat"
             onClick={() => {
               setIsEditor(true);
@@ -70,19 +75,15 @@ function HomePage(): JSX.Element {
         </li>
         <li>
           <a
-            class="tooltip tooltip-right flex items-center justify-center"
+            className="tooltip tooltip-right flex items-center justify-center"
             data-tip="Models"
           >
-            <BiRegularBrain
-              size={20}
-              fill="currentcolor"
-              color="#585C70"
-            ></BiRegularBrain>
+            <BiBrain size={20} fill="currentcolor" color="#585C70"></BiBrain>
           </a>
         </li>
         <li>
           <a
-            class="tooltip tooltip-right flex items-center justify-center"
+            className="tooltip tooltip-right flex items-center justify-center"
             data-tip="Setting"
           >
             <AiOutlineSetting
@@ -97,32 +98,32 @@ function HomePage(): JSX.Element {
   }
 
   return (
-    <div class="flex flex-row h-screen bg-[#1B1D22]  overflow-y-hidden">
-      <div class="w-[96px] flex flex-col items-center justify-between pt-2 pb-3 bg-[#1B1D22]">
-        <div class="flex flex-col items-center">
-          <FaRegularFaceDizzy
+    <div className="flex flex-row h-screen bg-[#1B1D22]  overflow-y-hidden">
+      <div className="w-[96px] flex flex-col items-center justify-between pt-2 pb-3 bg-[#1B1D22]">
+        <div className="flex flex-col items-center">
+          <GiBearFace
             size={24}
             fill="currentcolor"
             color="#E6E1DF"
-          ></FaRegularFaceDizzy>
+          ></GiBearFace>
           <MainMenu></MainMenu>
         </div>
-        <div class="w-8 h-8 rounded-full overflow-hidden">
+        <div className="w-8 h-8 rounded-full overflow-hidden">
           <img
             src="https://api.dicebear.com/6.x/initials/svg?seed=Ginger"
             alt="avatar"
           />
         </div>
       </div>
-      <div class="flex flex-col w-full h-full">
-        {isEditor() ? (
+      <div className="flex flex-col w-full h-full">
+        {isEditor ? (
           <ConversationPage></ConversationPage>
         ) : (
           <DataPage></DataPage>
         )}
       </div>
 
-      <div class="w-[256px] bg-gray-200">
+      <div className="w-[256px] bg-gray-200">
         <FilesTreeComponent></FilesTreeComponent>
       </div>
     </div>
