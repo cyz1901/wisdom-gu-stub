@@ -8,7 +8,7 @@
     ],
     "compilerOptions": {
         "composite": true,
-        "jsxImportSource": "solid-js",
+        "jsxImportSource": "react",
         "baseUrl": ".",
         "paths": {
             "@renderer/*": [

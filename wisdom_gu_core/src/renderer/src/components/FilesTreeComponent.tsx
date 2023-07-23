@@ -1,6 +1,6 @@
 const FilesTreeComponent = () => {
   return (
-    <ul class="menu menu-xs bg-[#1B1D22] max-w-xs w-full h-full">
+    <ul className="menu menu-xs bg-[#1B1D22] max-w-xs w-full h-full">
       <li>
         <a>
           <svg
@@ -9,7 +9,7 @@ const FilesTreeComponent = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-4 h-4"
+            className="w-4 h-4"
           >
             <path
               stroke-linecap="round"
@@ -29,7 +29,7 @@ const FilesTreeComponent = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-4 h-4"
+              className="w-4 h-4"
             >
               <path
                 stroke-linecap="round"
@@ -48,7 +48,7 @@ const FilesTreeComponent = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                 >
                   <path
                     stroke-linecap="round"
@@ -67,7 +67,7 @@ const FilesTreeComponent = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                 >
                   <path
                     stroke-linecap="round"
@@ -87,7 +87,7 @@ const FilesTreeComponent = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="w-4 h-4"
+                    className="w-4 h-4"
                   >
                     <path
                       stroke-linecap="round"
@@ -106,7 +106,7 @@ const FilesTreeComponent = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-4 h-4"
+                        className="w-4 h-4"
                       >
                         <path
                           stroke-linecap="round"
@@ -125,7 +125,7 @@ const FilesTreeComponent = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-4 h-4"
+                        className="w-4 h-4"
                       >
                         <path
                           stroke-linecap="round"
@@ -145,7 +145,7 @@ const FilesTreeComponent = () => {
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          class="w-4 h-4"
+                          className="w-4 h-4"
                         >
                           <path
                             stroke-linecap="round"
@@ -164,7 +164,7 @@ const FilesTreeComponent = () => {
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-4 h-4"
+                              className="w-4 h-4"
                             >
                               <path
                                 stroke-linecap="round"
@@ -192,7 +192,7 @@ const FilesTreeComponent = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-4 h-4"
+            className="w-4 h-4"
           >
             <path
               stroke-linecap="round"

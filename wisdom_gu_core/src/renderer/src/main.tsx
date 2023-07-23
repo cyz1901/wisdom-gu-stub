@@ -1,13 +1,18 @@
-import { render } from "solid-js/web";
-import { Router } from "@solidjs/router";
-import App from "./App";
 import "./index.css";
+import ReactDOM from "react-dom/client";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
-render(
-  () => (
-    <Router>
-      <App />
-    </Router>
-  ),
-  document.getElementById("app") as Node
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );

@@ -1,36 +1,25 @@
 import Dialog from "../components/Dialog";
-import { JSX } from "solid-js";
 
 function ConversationPage(): JSX.Element {
-  function handleKeyDown(event: KeyboardEvent) {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault(); // 阻止回车键默认行为
-      // 在这里执行您想要的操作
-      console.log("回车键被按下");
-
-      window.electron.ipcRenderer.send("msg2", "ping1");
-    }
-  }
-
   return (
-    <div class="flex flex-col w-full h-full">
-      <div class="w-full h-8 bg-[#1B1D22] flex flex-row items-center justify-between">
-        <div class="w-1/2 whitespace-nowrap overflow-x-hidden">
-          <button class="btn btn-xs" onclick={() => {}}>
+    <div className="flex flex-col w-full h-full">
+      <div className="w-full h-8 bg-[#1B1D22] flex flex-row items-center justify-between">
+        <div className="w-1/2 whitespace-nowrap overflow-x-hidden">
+          <button className="btn btn-xs" onClick={() => {}}>
             claude conversation
           </button>
         </div>
       </div>
-      <div class="flex flex-col w-full h-[calc(100%-32px)]">
-        <div class="bg-[#2A2C35] flex flex-col overflow-auto h-full space-y-4">
+      <div className="flex flex-col w-full h-[calc(100%-32px)]">
+        <div className="bg-[#2A2C35] flex flex-col overflow-auto h-full space-y-4">
           <Dialog name="me" content="aaaa"></Dialog>
         </div>
-        <div class="h-[80px] absolute bottom-3 left-[calc((100%-352px)/2-25%+96px)] w-1/2">
-          <div class=" h-12">
+        <div className="h-[80px] absolute bottom-3 left-[calc((100%-352px)/2-25%+96px)] w-1/2">
+          <div className=" h-12">
             <textarea
-              class="textarea w-full resize-none"
+              className="textarea w-full resize-none"
               placeholder="Send a message"
-              onKeyDown={handleKeyDown}
+              // onKeyDown={handleKeyDown}
             ></textarea>
           </div>
         </div>
