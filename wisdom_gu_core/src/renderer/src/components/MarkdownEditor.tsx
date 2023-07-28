@@ -1,8 +1,8 @@
 import Prism from "prismjs";
 import "prismjs/components/prism-markdown";
-import React, { useCallback, useMemo } from "react";
-import { Slate, Editable, withReact } from "slate-react";
-import { Text, createEditor, Descendant } from "slate";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import { Slate, Editable, withReact, ReactEditor } from "slate-react";
+import { Text, createEditor, Descendant, Editor, Transforms } from "slate";
 import { withHistory } from "slate-history";
 
 interface RangeStyle {
@@ -18,6 +18,7 @@ interface Range {
 const MarkdownPreviewExample = () => {
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+
   const decorate = useCallback(([node, path]) => {
     const ranges: Range[] = [];
 
@@ -61,7 +62,9 @@ const MarkdownPreviewExample = () => {
       <Editable
         decorate={decorate}
         renderLeaf={renderLeaf}
-        placeholder="Write some markdown..."
+        placeholder=""
+        className="outline-none"
+        autoFocus
       />
     </Slate>
   );
@@ -94,17 +97,9 @@ const initialValue: Descendant[] = [
     type: "paragraph",
     children: [
       {
-        text: "Slate is flexible enough to add **decorations** that can format text based on its content. For example, this editor has **Markdown** preview decorations on it, to make it _dead_ simple to make an editor with built-in Markdown previewing.",
+        text: "",
       },
     ],
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "## Try it out!" }],
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "Try it out for yourself!" }],
   },
 ];
 
