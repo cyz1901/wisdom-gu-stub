@@ -46,6 +46,7 @@
     "electron-vite": "^1.0.25",
     "geoip-lite": "^1.4.7",
     "langchain": "^0.0.109",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
