@@ -3,15 +3,34 @@ import {
   AiOutlineFileAdd,
   AiOutlineFolderAdd,
 } from "react-icons/ai";
+import { OpenFileSystemType } from "../../../common/enums/openFileSystemType";
 
 const FilesTreeComponent = () => {
+  const coreFolder = () => {};
+
   const FileTreeBar = () => {
     return (
       <div className="flex flex-row">
-        <button className="btn btn-xs">
+        <button
+          className="btn btn-xs"
+          onClick={() => {
+            window.electron.ipcRenderer.send(
+              "selectFileOrFolder",
+              OpenFileSystemType.File
+            );
+          }}
+        >
           <AiOutlineFileAdd></AiOutlineFileAdd>
         </button>
-        <button className="btn btn-xs">
+        <button
+          className="btn btn-xs"
+          onClick={() => {
+            window.electron.ipcRenderer.send(
+              "selectFileOrFolder",
+              OpenFileSystemType.Folder
+            );
+          }}
+        >
           <AiOutlineFolderAdd></AiOutlineFolderAdd>
         </button>
         <button className="btn btn-xs">

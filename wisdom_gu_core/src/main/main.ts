@@ -5,10 +5,12 @@ import icon from '../../resources/icon.png?asset'
 import geoip from 'geoip-lite';
 import os from 'os';
 
+import { match } from "ts-pattern"
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
 import * as dotenv from "dotenv";
 import initializeApp from "./lifecycle/initializeApp";
+import { OpenFileSystemType } from "../common/enums/openFileSystemType";
 
 
 function createWindow(): void {
@@ -132,9 +134,8 @@ function getClientIP() {
 }
 
 
-ipcMain.on('msg2', async (event, data) => {
-  console.log(data)
-  // connectWithClaude()
+ipcMain.on('selectFileOrFolder', async (event, data: OpenFileSystemType) => {
+  selectFileOrFolder(data)
 })
 
 async function connectWithClaude() {
@@ -149,14 +150,23 @@ async function connectWithClaude() {
 
 const { dialog } = require('electron');
 
-async function openFolder() {
-  const result = await dialog.showOpenDialog({
-    properties: ['openDirectory']
-  });
+async function selectFileOrFolder(type: OpenFileSystemType) {
+  match(type).with(OpenFileSystemType.Folder, async () => {
+    const result = await dialog.showOpenDialog({
+      properties: ['openDirectory']
+    });
 
-  if (!result.canceled) {
-    const folderPath = result.filePaths[0];
-    // 获取到选择的文件夹路径
-  }
+    if (!result.canceled) {
+      const folderPath = result.filePaths[0];
+      // 获取到选择的文件夹路径
+    }
+  }).with(OpenFileSystemType.File, async () => {
+    const result = await dialog.showOpenDialog({
+      properties: ['openFile'],
+    });
+
+    if (!result.canceled) {
+      const filePath = result.filePaths[0];
+    }
+  })
 }
-
