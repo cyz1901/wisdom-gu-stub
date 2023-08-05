@@ -75,7 +75,7 @@ const Leaf = ({ attributes, children, leaf }) => {
     leaf.bold && "font-bold",
     leaf.italic && "italic",
     leaf.underlined && "underline",
-    leaf.title && "block font-bold text-2xl my-5",
+    leaf.title && "block font-bold text-2xl my-5 text-red-50",
     leaf.list && "pl-4 text-lg leading-5",
     leaf.hr && "block mx-auto border-b-2 border-gray-300",
     leaf.blockquote &&
@@ -94,6 +94,7 @@ const Leaf = ({ attributes, children, leaf }) => {
 
 const initialValue: Descendant[] = [
   {
+    //@ts-ignore
     type: "paragraph",
     children: [
       {

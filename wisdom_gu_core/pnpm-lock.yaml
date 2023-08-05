@@ -73,6 +73,9 @@ devDependencies:
   '@types/geoip-lite':
     specifier: ^1.4.1
     version: 1.4.1
+  '@types/prismjs':
+    specifier: ^1.26.0
+    version: registry.npmmirror.com/@types/prismjs@1.26.0
   '@types/react':
     specifier: ^18.2.15
     version: registry.npmmirror.com/@types/react@18.2.15
@@ -4438,6 +4441,12 @@ packages:
       xmlbuilder: registry.npmmirror.com/xmlbuilder@15.1.1
     dev: false
     optional: true
+
+  registry.npmmirror.com/@types/prismjs@1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prismjs/-/prismjs-1.26.0.tgz}
+    name: '@types/prismjs'
+    version: 1.26.0
+    dev: true
 
   registry.npmmirror.com/@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prop-types/-/prop-types-15.7.5.tgz}

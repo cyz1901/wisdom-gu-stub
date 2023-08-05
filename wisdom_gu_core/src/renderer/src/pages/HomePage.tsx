@@ -122,10 +122,6 @@ function HomePage(): JSX.Element {
           <DataPage></DataPage>
         )}
       </div>
-
-      <div className="w-[256px] bg-gray-200">
-        <FilesTreeComponent></FilesTreeComponent>
-      </div>
     </div>
   );
 }

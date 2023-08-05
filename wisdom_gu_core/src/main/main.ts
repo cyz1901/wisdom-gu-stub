@@ -31,6 +31,7 @@ function createWindow(): void {
     mainWindow.show();
   });
 
+
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
     return { action: "deny" };
@@ -143,5 +144,19 @@ async function connectWithClaude() {
   const response = await chat.call([new HumanMessage(input)]);
 
   console.log(response);
+}
+
+
+const { dialog } = require('electron');
+
+async function openFolder() {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory']
+  });
+
+  if (!result.canceled) {
+    const folderPath = result.filePaths[0];
+    // 获取到选择的文件夹路径
+  }
 }
 
