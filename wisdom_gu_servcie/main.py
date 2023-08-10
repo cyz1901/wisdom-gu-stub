@@ -1,32 +1,38 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
+from langchain import ConversationChain
+from langchain.chat_models import ChatOpenAI
 
-from core import loadLLM, sendMessage
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Load the ML model
-    loadLLM()
-    yield
-    # Clean up the ML models and release the resources
-    print("EXITING")
+from core import loadLLM
+from lanarky import LangchainRouter
+from lanarky.testing import mount_gradio_app
 
 
-app = FastAPI(lifespan=lifespan)
+
+def create_chain():
+    return ConversationChain(
+        llm=loadLLM(),
+        verbose=True,
+    )
+
+
+app = mount_gradio_app(FastAPI(title="ConversationChainDemo"))
+chain = create_chain()
+
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+async def get(request: Request):
+    return {"hello", "world"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+langchain_router = LangchainRouter(
+    langchain_url="/chat", langchain_object=chain, streaming_mode=1
+)
+langchain_router.add_langchain_api_route(
+    "/chat_json", langchain_object=chain, streaming_mode=2
+)
+langchain_router.add_langchain_api_websocket_route("/ws", langchain_object=chain)
 
-@app.patch("/chat")
-def chat():
-    sendMessage()
-    return {"answer": "answer"}
+app.include_router(langchain_router)
