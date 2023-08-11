@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain, contextBridge } from "electron";
+import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import icon from '../../resources/icon.png?asset'
@@ -6,8 +6,6 @@ import geoip from 'geoip-lite';
 import os from 'os';
 
 import { match } from "ts-pattern"
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { HumanMessage } from "langchain/schema";
 import * as dotenv from "dotenv";
 import initializeApp from "./lifecycle/initializeApp";
 import { OpenFileSystemType } from "../common/enums/openFileSystemType";
@@ -96,7 +94,7 @@ app.on("window-all-closed", () => {
 //   event.sender.send('msg1-reply', 'pong')
 // })
 
-ipcMain.on('msg1', async (event, data) => {
+ipcMain.on('msg1', async (_, data) => {
   getClientIP()
   console.log(data)
 })
@@ -134,18 +132,18 @@ function getClientIP() {
 }
 
 
-ipcMain.on('selectFileOrFolder', async (event, data: OpenFileSystemType) => {
+ipcMain.on('selectFileOrFolder', async (_, data: OpenFileSystemType) => {
   selectFileOrFolder(data)
 })
 
-async function connectWithClaude() {
-  const chat = new ChatOpenAI();
+// async function connectWithClaude() {
+//   const chat = new ChatOpenAI();
 
-  const input = "How to use ChatAnthropic?";
-  const response = await chat.call([new HumanMessage(input)]);
+//   const input = "How to use ChatAnthropic?";
+//   const response = await chat.call([new HumanMessage(input)]);
 
-  console.log(response);
-}
+//   console.log(response);
+// }
 
 
 const { dialog } = require('electron');
@@ -157,8 +155,8 @@ async function selectFileOrFolder(type: OpenFileSystemType) {
     });
 
     if (!result.canceled) {
-      const folderPath = result.filePaths[0];
-      // 获取到选择的文件夹路径
+      //   const folderPath = result.filePaths[0];
+      //   // 获取到选择的文件夹路径
     }
   }).with(OpenFileSystemType.File, async () => {
     const result = await dialog.showOpenDialog({
@@ -166,7 +164,7 @@ async function selectFileOrFolder(type: OpenFileSystemType) {
     });
 
     if (!result.canceled) {
-      const filePath = result.filePaths[0];
+      // const filePath = result.filePaths[0];
     }
   })
 }

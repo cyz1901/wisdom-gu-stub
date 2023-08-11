@@ -1,8 +1,8 @@
 import Prism from "prismjs";
 import "prismjs/components/prism-markdown";
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { Slate, Editable, withReact, ReactEditor } from "slate-react";
-import { Text, createEditor, Descendant, Editor, Transforms } from "slate";
+import { useCallback, useMemo } from "react";
+import { Slate, Editable, withReact } from "slate-react";
+import { Text, createEditor, Descendant } from "slate";
 import { withHistory } from "slate-history";
 
 interface RangeStyle {

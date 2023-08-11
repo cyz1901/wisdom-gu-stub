@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { BsTextParagraph, BsChatLeftDots } from "react-icons/bs";
 import { BiBrain } from "react-icons/bi";
 import { AiOutlineSetting } from "react-icons/ai";
 import { GiBearFace } from "react-icons/gi";
 import ConversationPage from "./ConversationPage";
 import DataPage from "./DataPage";
-import FilesTreeComponent from "@renderer/components/FilesTreeComponent";
 
 function HomePage(): JSX.Element {
   const [isEditor, setIsEditor] = useState(false);

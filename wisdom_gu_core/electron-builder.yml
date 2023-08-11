@@ -14,6 +14,7 @@ asarUnpack:
 afterSign: build/notarize.js
 win:
   executableName: solid-ts
+  icon: resources/icon.png
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
