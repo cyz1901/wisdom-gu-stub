@@ -43,6 +43,7 @@ function initializeCoreDataFolder() {
     const folderPath = path.join(homeDirectory, 'wisdomGu', 'coreData');
     const fileTree: FileNode = {
         name: 'coreData',
+        path: folderPath,
         isDirectory: true,
         children: getAllCoreDataFolderFiles(folderPath),
     };
@@ -63,6 +64,7 @@ function getAllCoreDataFolderFiles(folderPath: string): FileNode[] {
         const fileStat = fs.statSync(filePath);
         const fileNode: FileNode = {
             name: file,
+            path: filePath,
             isDirectory: fileStat.isDirectory(),
             children: [],
         };
@@ -76,6 +78,7 @@ function getAllCoreDataFolderFiles(folderPath: string): FileNode[] {
 
     return fileNodes;
 }
+
 
 
 export default initializeApp;

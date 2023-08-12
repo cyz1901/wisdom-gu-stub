@@ -10,11 +10,21 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()]
   },
   renderer: {
+    server: {
+      headers: {
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+        'Access-Control-Allow-Origin': '*'
+      },
+    },
+    optimizeDeps: {
+      exclude: ['@sqlite.org/sqlite-wasm'],
+    },
     resolve: {
       alias: {
         '@renderer': resolve('src/renderer/src')
       }
     },
     plugins: [react()]
-  }
+  },
 })

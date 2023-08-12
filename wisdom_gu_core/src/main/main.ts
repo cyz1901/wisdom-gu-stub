@@ -9,21 +9,22 @@ import { match } from "ts-pattern"
 import * as dotenv from "dotenv";
 import initializeApp from "./lifecycle/initializeApp";
 import { OpenFileSystemType } from "../common/enums/openFileSystemType";
+import { FileObj } from "../common/models/fileNode";
 
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    title: "wisdom gu",
     width: 900,
     height: 670,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === "linux" ? { icon } : {}),
     webPreferences: {
-      // nodeIntegration: false,
-      // contextIsolation: true,
       preload: join(__dirname, "../preload/index.js"),
       sandbox: false,
+      webSecurity: false // 关闭同源策略
     },
   });
 
@@ -136,14 +137,25 @@ ipcMain.on('selectFileOrFolder', async (_, data: OpenFileSystemType) => {
   selectFileOrFolder(data)
 })
 
-// async function connectWithClaude() {
-//   const chat = new ChatOpenAI();
 
-//   const input = "How to use ChatAnthropic?";
-//   const response = await chat.call([new HumanMessage(input)]);
+const fs = require('fs');
 
-//   console.log(response);
-// }
+ipcMain.on('fileSystemGetFileObj', async (event, obj: FileObj) => {
+  // fetch(data.path)
+  //   .then((res) => res.blob())
+  //   .then((blob) => {
+  //     const file = new File([blob], data.name);
+  //     event.reply('fileSystemGetFileObj-reply', file);
+  //   });
+  console.log(`path is ${obj.path}`);
+  fs.readFile(obj.path, (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return;
+    }
+    event.reply('fileSystemGetFileObj-reply', data);
+  });
+})
 
 
 const { dialog } = require('electron');

@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: solid-ts
+productName: wisdom gu
 directories:
   buildResources: build
 files:
@@ -13,7 +13,7 @@ asarUnpack:
   - resources/**
 afterSign: build/notarize.js
 win:
-  executableName: solid-ts
+  executableName: wisdom gu
   icon: resources/icon.png
 nsis:
   artifactName: ${name}-${version}-setup.${ext}

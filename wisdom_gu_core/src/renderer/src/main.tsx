@@ -2,6 +2,13 @@ import "./index.css";
 import ReactDOM from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import { pdfjs } from "react-pdf";
+
+//init react-pdf
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
 
 const router = createHashRouter([
   {
