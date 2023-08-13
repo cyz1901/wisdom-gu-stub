@@ -5,19 +5,20 @@ export interface Tab {
     path: string;
 }
 
+
 interface DataFileTabsStore {
     selectedTabPath: Tab;
     tabs: Tab[];
-    content: Map<string, string>;
+    content: { [path: string]: File | null };
     selectTab: (tabNanme: string, tabPath: string) => void;
     addTab: (title: string, path: string) => void
+    addContent: (path: string, content: File | null) => void
 }
 
 export const useDataFileTabsStore = create<DataFileTabsStore>((set, get) => ({
-    //初始化 selectedTabPath
     selectedTabPath: { title: '', path: '' },
     tabs: [],
-    content: new Map<string, string>(),
+    content: {},
     selectTab: (tabName: string, tabPath: string) => {
         set((state) => ({
             ...state,
@@ -31,4 +32,10 @@ export const useDataFileTabsStore = create<DataFileTabsStore>((set, get) => ({
             tabs: [...state.tabs, { title: title, path: path }],
         }));
     },
+    addContent: (path, content) => {
+        set((state) => ({
+            ...state,
+            content: { ...state.content, [path]: content },
+        }));
+    }
 }));

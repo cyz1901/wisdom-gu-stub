@@ -36,6 +36,7 @@ function DataPage(): JSX.Element {
 
   const getRenderFileView = () => {
     const fileType = getFileTypeByPath(selectedTab.path);
+
     switch (fileType) {
       case "markdown":
         return <MarkdownPreviewExample></MarkdownPreviewExample>;
