@@ -13,6 +13,7 @@ interface DataFileTabsStore {
     selectTab: (tabNanme: string, tabPath: string) => void;
     addTab: (title: string, path: string) => void
     addContent: (path: string, content: File | null) => void
+    removeTab: (path: string) => void
 }
 
 export const useDataFileTabsStore = create<DataFileTabsStore>((set, get) => ({
@@ -36,6 +37,12 @@ export const useDataFileTabsStore = create<DataFileTabsStore>((set, get) => ({
         set((state) => ({
             ...state,
             content: { ...state.content, [path]: content },
+        }));
+    },
+    removeTab: (path) => {
+        set((state) => ({
+            ...state,
+            tabs: state.tabs.filter((tab) => tab.path !== path),
         }));
     }
 }));

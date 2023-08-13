@@ -1,40 +1,15 @@
 import FilesTreeComponent from "@renderer/components/FilesTreeComponent";
 import MarkdownPreviewExample from "@renderer/components/MarkdownEditor";
 import { Tab, useDataFileTabsStore } from "@renderer/stores/fileSystemStore";
-import { useEffect } from "react";
-import sqlite3InitModule from "@sqlite.org/sqlite-wasm";
 import { getFileTypeByPath } from "../../../common/utils/fileSystemUtil";
 import PdfEditor from "@renderer/components/PdfEditor";
+import { AiOutlineClose } from "react-icons/ai";
 
 function DataPage(): JSX.Element {
   const tabs = useDataFileTabsStore((state) => state.tabs);
   const selectedTab = useDataFileTabsStore((state) => state.selectedTabPath);
-  const addTab = useDataFileTabsStore((state) => state.addTab);
+  const removeTab = useDataFileTabsStore((state) => state.removeTab);
   const selectTab = useDataFileTabsStore((state) => state.selectTab);
-
-  useEffect(() => {
-    const log = (...args) => console.log(...args);
-    const error = (...args) => console.error(...args);
-
-    const start = function (sqlite3) {
-      log("Running SQLite3 version", sqlite3.version.libVersion);
-      const db = new sqlite3.oo1.DB("/mydb.sqlite3", "ct");
-      // Your SQLite code here.
-    };
-
-    log("Loading and initializing SQLite3 module...");
-    sqlite3InitModule({
-      print: log,
-      printErr: error,
-    }).then((sqlite3) => {
-      try {
-        log("Done initializing. Running demo...");
-        start(sqlite3);
-      } catch (err) {
-        error(err.name, err.message);
-      }
-    });
-  });
 
   const getRenderFileView = () => {
     const fileType = getFileTypeByPath(selectedTab.path);
@@ -63,12 +38,33 @@ function DataPage(): JSX.Element {
             {tabs.map((tab: Tab) => {
               return (
                 <button
-                  className="btn btn-xs"
+                  className="btn btn-xs bg-[#272a31] rounded-none"
+                  style={{ textTransform: "none" }}
                   onClick={() => {
                     selectTab(tab.title, tab.path);
                   }}
                 >
                   {tab.title}
+                  <AiOutlineClose
+                    onClick={(event) => {
+                      event.stopPropagation();
+
+                      const index = tabs.findIndex(
+                        (tab) => tab.path === selectedTab.path
+                      );
+                      if (index === 0) {
+                        if (tabs.length >= 2) {
+                          selectTab(tabs[1].title, tabs[1].path);
+                        } else {
+                          selectTab("", "");
+                        }
+                        removeTab(tabs[0].path);
+                      } else {
+                        selectTab(tabs[index - 1].title, tabs[index - 1].path);
+                        removeTab(tabs[index].path);
+                      }
+                    }}
+                  ></AiOutlineClose>
                 </button>
               );
             })}

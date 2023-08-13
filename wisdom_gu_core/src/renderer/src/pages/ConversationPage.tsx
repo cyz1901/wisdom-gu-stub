@@ -14,7 +14,7 @@ function ConversationPage(): JSX.Element {
         <div className="bg-[#2A2C35] flex flex-col overflow-auto h-full space-y-4">
           <Dialog name="me" content="aaaa"></Dialog>
         </div>
-        <div className="h-[80px] absolute bottom-3 left-[calc((100%-352px)/2-25%+96px)] w-1/2">
+        <div className="h-[80px] absolute bottom-3 left-[calc((100%-96px)/2+96px-25%)] w-1/2">
           <div className=" h-12">
             <textarea
               className="textarea w-full resize-none"
