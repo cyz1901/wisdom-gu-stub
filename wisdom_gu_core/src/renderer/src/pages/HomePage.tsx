@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsTextParagraph, BsChatLeftDots } from "react-icons/bs";
 import { BiBrain } from "react-icons/bi";
 import { AiOutlineSetting } from "react-icons/ai";
@@ -8,6 +8,8 @@ import DataPage from "./DataPage";
 
 function HomePage(): JSX.Element {
   const [isEditor, setIsEditor] = useState(false);
+
+  useEffect(() => {}, []);
   // const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   // const containerElementRef = useRef<>();
 
