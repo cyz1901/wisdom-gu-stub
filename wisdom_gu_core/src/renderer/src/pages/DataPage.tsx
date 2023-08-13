@@ -9,6 +9,8 @@ import PdfEditor from "@renderer/components/PdfEditor";
 function DataPage(): JSX.Element {
   const tabs = useDataFileTabsStore((state) => state.tabs);
   const selectedTab = useDataFileTabsStore((state) => state.selectedTabPath);
+  const addTab = useDataFileTabsStore((state) => state.addTab);
+  const selectTab = useDataFileTabsStore((state) => state.selectTab);
 
   useEffect(() => {
     const log = (...args) => console.log(...args);
@@ -60,7 +62,12 @@ function DataPage(): JSX.Element {
           <div className="w-1/2 whitespace-nowrap overflow-x-hidden">
             {tabs.map((tab: Tab) => {
               return (
-                <button className="btn btn-xs" onClick={() => {}}>
+                <button
+                  className="btn btn-xs"
+                  onClick={() => {
+                    selectTab(tab.title, tab.path);
+                  }}
+                >
                   {tab.title}
                 </button>
               );
