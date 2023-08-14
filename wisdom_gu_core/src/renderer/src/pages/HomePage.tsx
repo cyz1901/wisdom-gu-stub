@@ -111,6 +111,7 @@ function HomePage(): JSX.Element {
         </div>
         <div className="w-8 h-8 rounded-full overflow-hidden">
           <img
+            crossOrigin="anonymous"
             src="https://api.dicebear.com/6.x/initials/svg?seed=Ginger"
             alt="avatar"
           />
