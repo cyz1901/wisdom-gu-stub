@@ -1,3 +1,5 @@
+# This repo is currently being rewritten
+
 # Wisdom Gu - Private Knowledge Base Software
 English | [简体中文](./README-zh_CN.md) 
 
